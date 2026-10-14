@@ -4,5 +4,6 @@ test_des_core
 cifrar
 secuencial
 bruteforce_mpi
+bruteforce_mpi_naive
 *.csv
 docs/
