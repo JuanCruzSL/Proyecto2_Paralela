@@ -17,7 +17,10 @@ secuencial: secuencial.c des_core.c des_core.h
 bruteforce_mpi: bruteforce_mpi.c distribucion.c distribucion.h des_core.c des_core.h
 	$(MPICC) $(CFLAGS) -o $@ bruteforce_mpi.c distribucion.c des_core.c $(LIBS)
 
+bruteforce_mpi_naive: bruteforce_mpi.c distribucion_naive.c distribucion.h des_core.c des_core.h
+	$(MPICC) $(CFLAGS) -o $@ bruteforce_mpi.c distribucion_naive.c des_core.c $(LIBS)
+
 clean:
-	rm -f test_des_core cifrar secuencial bruteforce_mpi
+	rm -f test_des_core cifrar secuencial bruteforce_mpi bruteforce_mpi_naive
 
 .PHONY: all clean

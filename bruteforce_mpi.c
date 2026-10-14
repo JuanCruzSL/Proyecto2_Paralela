@@ -94,8 +94,8 @@ int main(int argc, char *argv[])
 
     const char *palabraClave = argv[2];
     long long totalLlaves = 1LL << bitsEspacio;
-    long long llaveInicio, llaveFin;
-    calcularRango(rank, size, totalLlaves, &llaveInicio, &llaveFin);
+    long long llaveInicio, llaveFin, paso;
+    calcularRango(rank, size, totalLlaves, &llaveInicio, &llaveFin, &paso);
 
     long long llaveRecibida = -1;
     long long llaveLocal = -1;
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     verificarMPI(MPI_Barrier(MPI_COMM_WORLD), "MPI_Barrier");
     double tiempoInicio = MPI_Wtime();
 
-    for (long long llave = llaveInicio; llave < llaveFin && !recibido; llave++) {
+    for (long long llave = llaveInicio; llave < llaveFin && !recibido; llave += paso) {
         iteraciones++;
         if (tryKey((long)llave, textoCifrado, largo, palabraClave)) {
             llaveLocal = llave;
